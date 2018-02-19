@@ -1,9 +1,14 @@
 import React from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, StyleSheet } from 'react-native'
 import { black, white } from '../utils/colors'
+import { saveDeck } from '../utils/api'
 
 class NewDeck extends React.Component {
-  state = { deckName: '' };
+	state = { deckName: '' };
+
+	submit = () => {
+		saveDeck(this.state.deckName);
+	}
 
   render() {
     return (
