@@ -50,10 +50,12 @@ const styles = StyleSheet.create({
 		borderWidth: 1.0,
 		
 	},
+
 	header:{
 		fontSize:60,
 		textAlign:'center'
 	},
+
 	submitButton: {
 		padding: 20,
 		margin: 120,
@@ -64,11 +66,12 @@ const styles = StyleSheet.create({
 		borderWidth: 0.5,
 		backgroundColor: black,
 	},
+
 	buttonText: {
 		textAlign: 'center',
 		color: white,
 		fontSize: 16,
-	}
+	},
 
 })
 
