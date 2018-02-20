@@ -7,7 +7,11 @@ class NewDeck extends React.Component {
   state = { deckName: '' }
 
   submit = () => {
-    saveDeck(this.state.deckName);
+    saveDeck(this.state.deckName)
+		this.setState({
+		  deckName:''
+		})
+    this.props.navigation.goBack();
   }
 
   render() {

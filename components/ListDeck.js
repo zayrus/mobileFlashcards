@@ -8,9 +8,17 @@ export default class DeckListView extends React.Component {
   state = { decks: {} };
 
   componentDidMount() {
-    getDecks().then(res => this.setState({ decks: res }));
+    this.updateDecks();
   }
 
+  updateDecks = () => {
+    getDecks()
+      .then(res => {
+        console.log('decks from api');
+        this.setState({ decks: res })
+      })
+  }
+  
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
@@ -38,6 +46,7 @@ export default class DeckListView extends React.Component {
 
   render() {
     const { decks } = this.state;
+    console.log('decks to show ', decks);
     if (!decks)
       return (
         <View>
