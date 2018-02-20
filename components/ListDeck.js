@@ -14,7 +14,7 @@ export default class DeckListView extends React.Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-				style={styles.item}
+        style={styles.item}
         onPress={() => {
           this.props.navigation.navigate('ItemDeck', {
             deck: item
@@ -38,7 +38,6 @@ export default class DeckListView extends React.Component {
 
   render() {
     const { decks } = this.state;
-		console.log(decks)
     if (!decks)
       return (
         <View>

@@ -14,34 +14,34 @@ const Tabs = TabNavigator(
     ListDeck: {
       screen: ListDeck,
       navigationOptions: {
-				tabBarLabel: 'Deck List',
-				tabBarIcon: ({ tintColor }) => <FontAwesome name='list' size={30} color={tintColor} />
+        tabBarLabel: 'Deck List',
+        tabBarIcon: ({ tintColor }) => <FontAwesome name='list' size={30} color={tintColor} />
       }
     },
     NewDeck: {
       screen: NewDeck,
       navigationOptions: {
-				tabBarLabel: 'New Deck',
-				tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+        tabBarLabel: 'New Deck',
+        tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
       }
     }
   },
   {
     navigationOptions: { header: null },
-		tabBarOptions: {
-			activeTintColor: Platform.OS === 'ios' ? black : white,
-			style: {
-				height: 56,
-				backgroundColor: Platform.OS === 'ios' ? white : black,
-				shadowColor: 'rgba(0, 0, 0, 0.24)',
-				shadowOffset: {
-					width: 0,
-					height: 3
-				},
-				shadowRadius: 6,
-				shadowOpacity: 1
-			}
-		}
+    tabBarOptions: {
+      activeTintColor: Platform.OS === 'ios' ? black : white,
+      style: {
+        height: 56,
+        backgroundColor: Platform.OS === 'ios' ? white : black,
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
+    }
   }
 )
 
@@ -55,8 +55,9 @@ export const MainNavigator = StackNavigator({
         backgroundColor: grey
       }
     }
-	},
-	AddCard: {
+  },
+
+  AddCard: {
     screen: AddCard,
     navigationOptions: {
       headerTintColor: white,

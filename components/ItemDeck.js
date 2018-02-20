@@ -65,39 +65,41 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+
   addButton: {
-		padding: 20,
+    padding: 20,
     margin: 10,
     marginTop: 150,
     marginRight:  80,
     marginLeft:  80,
-		borderRadius: 10,
-		borderColor: '#222',
-		borderWidth: 0.5,
-		backgroundColor: white,
-	},
-
-	addButtonText: {
-		textAlign: 'center',
-		color: black,
-		fontSize: 16,
+    borderRadius: 10,
+    borderColor: '#222',
+    borderWidth: 0.5,
+    backgroundColor: white,
   },
+
+  addButtonText: {
+    textAlign: 'center',
+    color: black,
+    fontSize: 16,
+  },
+
   startButton: {
-		padding: 20,
+    padding: 20,
     margin: 10,
     marginRight:  80,
     marginLeft:  80,
-		borderRadius: 10,
-		borderColor: '#222',
-		borderWidth: 0.5,
-		backgroundColor: black,
-	},
+    borderRadius: 10,
+    borderColor: '#222',
+    borderWidth: 0.5,
+    backgroundColor: black,
+  },
 
-	startButtonText: {
-		textAlign: 'center',
-		color: white,
-		fontSize: 16,
-	},
+  startButtonText: {
+    textAlign: 'center',
+    color: white,
+    fontSize: 16,
+  },
 })
 
 function mapStateToProps(state) {

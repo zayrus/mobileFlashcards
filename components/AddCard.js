@@ -1,58 +1,61 @@
 import React from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, StyleSheet } from 'react-native'
-import { addCard } from '../utils/api'
-import {white, grey } from '../utils/colors'
+import { addCardToDeck } from '../utils/api'
+import {white, grey, black, lightBlack } from '../utils/colors'
 
 export default class AddCard extends React.Component {
   state = {
-    questionText: 'Write question',
-    answerText: 'Write answer'
-  };
-
-  submit = () => {
-    addCard(
-      this.props.navigation.state.params.deckTitle,
-      this.state.questionText,
-      this.state.answerText
-    )
-    this.props.navigation.return()
+    question: '',
+    answer: ''
   }
 
-  changeQuestionText = text => this.setState({ questionText: text })
+  submit = () => {
+    addCardToDeck(
+      this.props.navigation.state.params.deckTitle,
+      this.state.question,
+      this.state.answer
+    )
+    this.props.navigation.goBack()
+  }
 
-  changeAnswerText = text => this.setState({ answerText: text })
+  addQuestion = questionInput => this.setState({ question: questionInput })
+
+  addAnswer = answerInput => this.setState({ answer: answerInput })
 
   render() {
-    const { questionText, answerText } = this.state;
+    const { question, answer } = this.state
     return (
-      <KeyboardAvoidingView style={styles.container}>
-				<View style={styles.inputContainer}>
-					<TextInput
-						style={styles.input}
-						value={questionText}
-						multiline={true}
-						editable={true}
-						numberOfLines={4}
-						placeholder="Your Question"
-						onChangeText={text => this.changeQuestionText(text)}
-					/>
-				</View>
-				<View style={styles.inputContainer}>
-					<TextInput
-						style={styles.input}
-						value={answerText}
-						multiline={true}
-						editable={true}
-						numberOfLines={6}
-						placeholder="Your Answer"
-						onChangeText={text => this.changeAnswerText(text)}
-					/>
-				</View>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+      >
+        <TextInput
+          style={styles.textInputBox}
+          value={question}
+          placeholder='Write a question'
+          multiline={true}
+          editable={true}
+          numberOfLines={4}
+          placeholder="Your Question"
+          onChangeText={question => this.addQuestion(question)}
+        />
+        <TextInput
+          style={styles.textInputBox}
+          value={answer}
+          placeholder='Write answer'
+          multiline={true}
+          editable={true}
+          numberOfLines={6}
+          placeholder="Your Answer"
+          onChangeText={answer => this.addAnswer(answer)}
+        />
         <TouchableOpacity onPress={this.submit}>
-          <Text>SUBMIT</Text>
+          <View style={styles.submitButton}>
+            <Text style={[styles.buttonText]}>Submit</Text>
+          </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
-    );
+    )
   }
 }
 
@@ -60,15 +63,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 40,
-    backgroundColor: white,
+    alignContent:'center',
     justifyContent: 'space-around',
   },
-  input: {
-    fontSize: 16,
+
+  textInputBox: {
     padding: 20,
-    color: white
+    margin: 10,
+    borderColor: black,
+    borderRadius: 5,
+    borderWidth: 1.0,
+
   },
+
   inputContainer: {
     backgroundColor: grey
-  }
+  },
+
+  submitButton: {
+    padding: 20,
+    margin: 120,
+    marginBottom: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    borderColor: lightBlack,
+    borderWidth: 0.5,
+    backgroundColor: black,
+  },
+
+  buttonText: {
+    textAlign: 'center',
+    color: white,
+    fontSize: 16,
+  },
+
 })
