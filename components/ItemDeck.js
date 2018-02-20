@@ -12,7 +12,7 @@ export default class ItemDeck extends React.Component {
 
   onAddCard = () => {
     const { deck } = this.props.navigation.state.params;
-    this.props.navigation.navigate('NewQuestionView', {
+    this.props.navigation.navigate('AddCard', {
       deckTitle: deck.title
     });
   };

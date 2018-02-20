@@ -4,6 +4,8 @@ import ListDeck from '../components/ListDeck'
 import React from 'react'
 import NewDeck from '../components/NewDeck'
 import ItemDeck from '../components/ItemDeck'
+import AddCard from '../components/AddCard'
+
 import {white, grey, black } from '../utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
@@ -47,6 +49,15 @@ export const MainNavigator = StackNavigator({
   Home: { screen: Tabs },
   ItemDeck: {
     screen: ItemDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: grey
+      }
+    }
+	},
+	AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
