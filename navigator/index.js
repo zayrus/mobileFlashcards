@@ -48,7 +48,7 @@ export const MainNavigator = StackNavigator({
   ItemDeck: {
     screen: ItemDeck,
     navigationOptions: {
-      headerTintColor: black,
+      headerTintColor: white,
       headerStyle: {
         backgroundColor: grey
       }
