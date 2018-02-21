@@ -5,6 +5,8 @@ import React from 'react'
 import NewDeck from '../components/NewDeck'
 import ItemDeck from '../components/ItemDeck'
 import AddCard from '../components/AddCard'
+import Quiz from '../components/Quiz'
+import QuizStats from '../components/QuizStats'
 
 import {white, grey, black } from '../utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
@@ -62,7 +64,27 @@ export const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: grey
+        backgroundColor: white
+      }
+    }
+  },
+
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: white
+      }
+    }
+  },
+
+  QuizStats: {
+    screen: QuizStats,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: white
       }
     }
   },
