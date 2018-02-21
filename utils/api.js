@@ -12,27 +12,29 @@ export const getDecks = () => {
     .then(list => JSON.parse(list))
 }
 
-export const addCardToDeck = (deckTitle, question, answer) => {
-  const deck = getDeck(deckTitle).then(res => {
-    const updatedQuestions = res.questions.concat([
-      {
-        question: question,
-        answer: answer
-      }
-    ])
-    AsyncStorage.mergeItem(
-      CARDS_STORAGE_KEY,
-      JSON.stringify({
-        [deckTitle]: { title: deckTitle, questions: updatedQuestions }
-      })
-    )
-  })
+export function getDeck (title) {
+  return AsyncStorage.getItem(CARDS_STORAGE_KEY)
+    .then(results => {
+      const decks = JSON.parse(results);
+      return decks[title]
+    });
 }
 
-export const getDeck = key =>
-  AsyncStorage.getItem(CARDS_STORAGE_KEY)
-    .then(res => {
-      const decks = JSON.parse(res)
-      return decks[key]
-    })
+export function addCardToDeck (title, card) {
+  return getDeck(title)
+    .then(result =>  result)
+    .then(deck => {
+      const { question, answer } = card;
+      const newQuestions = deck.questions.concat({
+        question,
+        answer,
+      });
 
+      AsyncStorage.mergeItem(CARDS_STORAGE_KEY, JSON.stringify({
+        [title]: {
+          title,
+          questions: newQuestions
+        }
+      }))
+    })
+}

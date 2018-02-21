@@ -1,39 +1,42 @@
 
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Platform } from 'react-native';
-import { getDecks } from '../utils/api';
-import { grey, white } from '../utils/colors';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Platform } from 'react-native'
+import { connect } from 'react-redux'
+import { fetchDecks } from '../actions'
+import { getDecks } from '../utils/api'
+import { grey, white } from '../utils/colors'
 
-export default class DeckListView extends React.Component {
-  state = { decks: {} };
+class ListDeck extends Component {
 
+	state = {
+    isReady: false,
+	}
+	
   componentDidMount() {
-    this.updateDecks();
+    this.updateDecks()
   }
 
   updateDecks = () => {
     getDecks()
       .then(res => {
-        console.log('decks from api');
-        this.setState({ decks: res })
+				this.props.dispatch(fetchDecks(res))
+				this.setState({
+          isReady:true
+        })
       })
-  }
-  
+	}
+	
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity
-        style={styles.item}
-        onPress={() => {
-          this.props.navigation.navigate('ItemDeck', {
-            deck: item
-          });
-        }}
-      >
-        <Text style={styles.deck} >{item.title}</Text>
-        <Text style={styles.cardQty} >{item.questions.length} Cards</Text>
-      </TouchableOpacity>
-    );
-  };
+			<TouchableOpacity 
+				style={styles.item} 
+				onPress={() =>
+					this.props.navigation.navigate('ItemDeck', item)}>
+					<Text style={styles.deck} >{item.title}</Text>
+					<Text style={styles.cardQty} >{item.questions.length} Cards</Text>
+			</TouchableOpacity>
+    )
+  }
 
   renderItemSeparator = () => (
     <View
@@ -42,31 +45,36 @@ export default class DeckListView extends React.Component {
         backgroundColor: grey
       }}
     />
-  );
+  )
 
   render() {
-    const { decks } = this.state;
-    console.log('decks to show ', decks);
+		const { decks, navigation } = this.props
+		const { isReady } = this.state
+		
     if (!decks)
       return (
         <View>
           <Text>There are no decks. Touch here to create one!</Text>
         </View>
-      );
-
-    const data = Object.values(decks);
+      )
 
     return (
       <View>
         <FlatList
-          data={data}
+          data={Object.values(this.props.decks)}
           renderItem={this.renderItem}
           ItemSeparatorComponent={this.renderItemSeparator}
-          keyExtractor={item => item.title}
+          keyExtractor={(item, index) => index}
         />
       </View>
-    );
+    )
   }
+}
+
+function mapStateToProps(state) {
+	return {
+			decks: state,
+	}
 }
 
 const styles = StyleSheet.create({
@@ -99,3 +107,5 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   }
 })
+
+export default connect(mapStateToProps)(ListDeck)

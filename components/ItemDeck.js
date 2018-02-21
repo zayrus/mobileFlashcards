@@ -1,45 +1,36 @@
-import React from 'react';
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
-import { getDeck } from '../utils/api'
+import React, { Component } from 'react'
+import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import { black, white, grey } from '../utils/colors'
 
-export default class ItemDeck extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    const { deck } = navigation.state.params;
-    if (!deck) return { title: 'DeckTitle' };
-    return { title: deck.title };
-  };
-
-  onAddCard = () => {
-    const { deck } = this.props.navigation.state.params;
-    this.props.navigation.navigate('AddCard', {
-      deckTitle: deck.title
-    });
-  };
-
-  onStartQuiz = () => {
-    const { deck } = this.props.navigation.state.params;
-    this.props.navigation.navigate('QuizView', { deck: deck });
-  };
-
+class ItemDeck extends React.Component {
   render() {
-    const { deck } = this.props.navigation.state.params;
-
-    if (!deck)
-      return (
-        <View>
-          <Text>No deck!</Text>
-        </View>
-      );
+    let {title} = this.props.navigation.state.params;
+    let questions = this.props.decks[title] && this.props.decks[title].questions;
 
     return (
       <View style={styles.container}>
-        <Text style={styles.bigText}>{deck.title}</Text>
-        <Text style={styles.smallText}>{deck.questions.length} cards</Text>
-        <TouchableOpacity style={styles.addButton} onPress={this.onAddCard}>
+        <Text style={styles.bigText}>{title}</Text>
+        <Text style={styles.smallText}>{questions.length} cards</Text>
+        <TouchableOpacity style={styles.addButton} 
+            onPress={() => {
+              this.props.navigation.navigate('AddCard', {
+                  questions,
+                  title,
+              });
+            }}
+          >
           <Text style={styles.addButtonText} >Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.startButton} onPress={this.onStartQuiz}>
+        <TouchableOpacity 
+          style={styles.startButton}
+          onPress={() => {
+            this.props.navigation.navigate('Quiz', {
+                title,
+                questions,
+            });
+          }}
+        >
           <Text style={styles.startButtonText}>Start Quiz</Text>
         </TouchableOpacity>
       </View>
@@ -103,6 +94,9 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state) {
-  const decks = state.decks
-  return { decks }
+  return {
+      decks: state,
+  }
 }
+
+export default connect(mapStateToProps)(ItemDeck)

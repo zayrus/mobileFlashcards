@@ -1,26 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, StyleSheet } from 'react-native'
-import { addCardToDeck } from '../utils/api'
+import { connect } from 'react-redux'
+import { addCard } from '../actions'
+
 import {white, grey, black, lightBlack } from '../utils/colors'
 
-export default class AddCard extends React.Component {
+class AddCard extends React.Component {
   state = {
     question: '',
     answer: ''
   }
 
   submit = () => {
-    addCardToDeck(
-      this.props.navigation.state.params.deckTitle,
-      this.state.question,
-      this.state.answer
-    )
-    this.props.navigation.goBack()
+    const { question, answer } = this.state
+    const {questions, title} = this.props.navigation.state.params
+
+    if (question === '') {
+        alert('Please fill Question field')
+        return
+    }
+
+    if (answer === '') {
+        alert('Please fill Answer field')
+        return
+    }
+    const params = {questions, title, question, answer};
+
+    this.props.dispatch(addCard(title, {question, answer}))
+      .then(() => this.props.navigation.goBack())
+
   }
-
-  addQuestion = questionInput => this.setState({ question: questionInput })
-
-  addAnswer = answerInput => this.setState({ answer: answerInput })
 
   render() {
     const { question, answer } = this.state
@@ -37,7 +46,7 @@ export default class AddCard extends React.Component {
           editable={true}
           numberOfLines={4}
           placeholder="Your Question"
-          onChangeText={question => this.addQuestion(question)}
+          onChangeText={question => this.setState({question})}
         />
         <TextInput
           style={styles.textInputBox}
@@ -47,7 +56,7 @@ export default class AddCard extends React.Component {
           editable={true}
           numberOfLines={6}
           placeholder="Your Answer"
-          onChangeText={answer => this.addAnswer(answer)}
+          onChangeText={answer => this.setState({answer})}
         />
         <TouchableOpacity onPress={this.submit}>
           <View style={styles.submitButton}>
@@ -98,3 +107,11 @@ const styles = StyleSheet.create({
   },
 
 })
+
+function mapStateToProps(state) {
+  return {
+      decks: state,
+  }
+}
+
+export default connect(mapStateToProps)(AddCard)

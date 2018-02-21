@@ -3,15 +3,15 @@ import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, StyleShe
 import { black, white, lightBlack } from '../utils/colors'
 import { saveDeck } from '../utils/api'
 
-class NewDeck extends React.Component {
+export default class NewDeck extends React.Component {
   state = { deckName: '' }
 
   submit = () => {
-    saveDeck(this.state.deckName)
+		saveDeck(this.state.deckName)
 		this.setState({
 		  deckName:''
 		})
-    this.props.navigation.goBack();
+		this.props.navigation.goBack();
   }
 
   render() {
@@ -76,5 +76,3 @@ const styles = StyleSheet.create({
   },
 
 })
-
-export default NewDeck;
