@@ -11,10 +11,11 @@ export default class Quiz extends Component {
     currentQuestion: '',
     currentAnswer: ''
   }
-  
+
   componentDidMount() {
     const deck  = this.props.navigation.state.params
     this.setState({
+      lenghtQuiz: deck.questions.length,
       currentQuestion: deck.questions[0].question,
       currentAnswer: deck.questions[0].answer
     })
@@ -52,24 +53,31 @@ export default class Quiz extends Component {
 
   render() {
     return (
-      <View style={{flex:1, backgroundColor:white}}>
-        {this.state.mode === 'question' ? (
-          <Text>{this.state.currentQuestion}</Text>
-        ) : (
-          <Text>{this.state.currentAnswer}</Text>
-        )}
-        
-        <TouchableOpacity onPress={this.toggleMode} >
-          <Text>{this.state.mode === 'question' ? 'Answer' : 'Question'}</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={this.onCorrect}>
-          <Text>Correct</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={this.onIncorrect}>
-          <Text>Incorrect</Text>
-        </TouchableOpacity>
+      <View>
+        <View>
+          <Text>
+            { this.state.currentIndex }/{ this.state.lenghtQuiz }
+          </Text>
+        </View>
+        <View style={styles.container}>
+          {this.state.mode === 'question' ? (
+            <Text style={styles.question}>{this.state.currentQuestion}</Text>
+          ) : (
+            <Text style={styles.question}>{this.state.currentAnswer}</Text>
+          )}
+
+          <TouchableOpacity onPress={this.toggleMode} >
+            <Text style={styles.toggleText}>{this.state.mode === 'question' ? 'Answer' : 'Question'}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.onCorrect}>
+            <Text style={styles.correct}>Correct</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.onIncorrect}>
+            <Text style={styles.incorrect}>Incorrect</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -77,9 +85,38 @@ export default class Quiz extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: white,
-    alignItems: 'center'
+    justifyContent:'flex-start',
+    alignItems:'center'
+  },
+
+  toggleText:{
+    textAlign:"center",
+    color:"gray",
+    marginBottom:20,
+    fontSize:10
+  },
+
+  question:{
+    fontSize:35,
+    margin:30,
+    textAlign:'center',
+    textAlignVertical:'center'
+  },
+
+  correct:{
+    color:'darkorange',
+    fontSize:20,
+  },
+
+  incorrect:{
+    color:'#A40000',
+    fontSize:20,
+  },
+
+  retakeButton:{
+    marginTop:20,
+    color:'darkorange'
   }
+
 })
 

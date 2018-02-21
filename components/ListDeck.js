@@ -8,10 +8,10 @@ import { grey, white } from '../utils/colors'
 
 class ListDeck extends Component {
 
-	state = {
+  state = {
     isReady: false,
-	}
-	
+  }
+
   componentDidMount() {
     this.updateDecks()
   }
@@ -19,22 +19,22 @@ class ListDeck extends Component {
   updateDecks = () => {
     getDecks()
       .then(res => {
-				this.props.dispatch(fetchDecks(res))
-				this.setState({
+        this.props.dispatch(fetchDecks(res))
+        this.setState({
           isReady:true
         })
       })
-	}
-	
+  }
+
   renderItem = ({ item }) => {
     return (
-			<TouchableOpacity 
-				style={styles.item} 
-				onPress={() =>
-					this.props.navigation.navigate('ItemDeck', item)}>
-					<Text style={styles.deck} >{item.title}</Text>
-					<Text style={styles.cardQty} >{item.questions.length} Cards</Text>
-			</TouchableOpacity>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() =>
+          this.props.navigation.navigate('ItemDeck', item)}>
+          <Text style={styles.deck} >{item.title}</Text>
+          <Text style={styles.cardQty} >{item.questions.length} Cards</Text>
+      </TouchableOpacity>
     )
   }
 
@@ -48,9 +48,9 @@ class ListDeck extends Component {
   )
 
   render() {
-		const { decks, navigation } = this.props
-		const { isReady } = this.state
-		
+    const { decks, navigation } = this.props
+    const { isReady } = this.state
+
     if (!decks)
       return (
         <View>
@@ -72,9 +72,9 @@ class ListDeck extends Component {
 }
 
 function mapStateToProps(state) {
-	return {
-			decks: state,
-	}
+  return {
+      decks: state,
+  }
 }
 
 const styles = StyleSheet.create({

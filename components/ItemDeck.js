@@ -12,7 +12,7 @@ class ItemDeck extends React.Component {
       <View style={styles.container}>
         <Text style={styles.bigText}>{title}</Text>
         <Text style={styles.smallText}>{questions.length} cards</Text>
-        <TouchableOpacity style={styles.addButton} 
+        <TouchableOpacity style={styles.addButton}
             onPress={() => {
               this.props.navigation.navigate('AddCard', {
                   questions,
@@ -22,7 +22,7 @@ class ItemDeck extends React.Component {
           >
           <Text style={styles.addButtonText} >Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.startButton}
           onPress={() => {
             this.props.navigation.navigate('Quiz', {

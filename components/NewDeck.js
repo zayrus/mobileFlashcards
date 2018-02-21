@@ -10,10 +10,10 @@ class NewDeck extends Component {
 
   submit = () => {
     this.props.dispatch(addNewDeck(this.state.deckName))
-		this.setState({
-		  deckName:''
-		})
-		this.props.navigation.goBack()
+    this.setState({
+      deckName:''
+    })
+    this.props.navigation.goBack()
   }
 
   render() {
