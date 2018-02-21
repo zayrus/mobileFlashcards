@@ -6,11 +6,16 @@ import { addCard } from '../actions'
 import {white, grey, black, lightBlack } from '../utils/colors'
 
 class AddCard extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Add Card'
+    }
+  }
   state = {
     question: '',
     answer: ''
   }
-
+  
   submit = () => {
     const { question, answer } = this.state
     const {questions, title} = this.props.navigation.state.params

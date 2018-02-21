@@ -3,6 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { black, white, lightBlack } from '../utils/colors'
 
 export default class QuizStats extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Quiz stats'
+    }
+  }
   render() {
     const { questionsCount, correctCount } = this.props.navigation.state.params
     return (

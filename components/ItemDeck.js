@@ -3,7 +3,13 @@ import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { black, white, grey } from '../utils/colors'
 
-class ItemDeck extends React.Component {
+  class ItemDeck extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+      const { title } = navigation.state.params
+      return {
+        title: title + ' details'
+      }
+    }
   render() {
     let {title} = this.props.navigation.state.params;
     let questions = this.props.decks[title] && this.props.decks[title].questions;

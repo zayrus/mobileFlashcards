@@ -3,7 +3,11 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { green, red, white, purple } from '../utils/colors'
 
 export default class Quiz extends Component {
-
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Quiz'
+    }
+  }
   state = {
     currentIndex: 0,
     mode: 'question',
