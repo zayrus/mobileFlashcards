@@ -8,7 +8,7 @@ import AddCard from '../components/AddCard'
 import Quiz from '../components/Quiz'
 import QuizStats from '../components/QuizStats'
 
-import {white, grey, black } from '../utils/colors'
+import {white, grey, black, lightBlack } from '../utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 const Tabs = TabNavigator(
@@ -54,7 +54,7 @@ export const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: grey
+        backgroundColor: lightBlack
       }
     }
   },
@@ -64,7 +64,7 @@ export const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: white
+        backgroundColor: lightBlack
       }
     }
   },
@@ -74,7 +74,7 @@ export const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: white
+        backgroundColor: lightBlack
       }
     }
   },
@@ -84,7 +84,7 @@ export const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: white
+        backgroundColor: lightBlack
       }
     }
   },
