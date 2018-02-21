@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import { black, white, lightBlack } from '../utils/colors'
 import { saveDeck } from '../utils/api'
+import { addNewDeck } from '../actions'
 
-export default class NewDeck extends React.Component {
+class NewDeck extends Component {
   state = { deckName: '' }
 
   submit = () => {
-		saveDeck(this.state.deckName)
+    this.props.dispatch(addNewDeck(this.state.deckName))
 		this.setState({
 		  deckName:''
 		})
-		this.props.navigation.goBack();
+		this.props.navigation.goBack()
   }
 
   render() {
@@ -76,3 +78,5 @@ const styles = StyleSheet.create({
   },
 
 })
+
+export default connect()(NewDeck)
