@@ -9,16 +9,23 @@ export default class QuizStats extends Component {
     }
   }
   render() {
-    const { questionsCount, correctCount } = this.props.navigation.state.params
+    const { questionsCount, correctCount, title, questions } = this.props.navigation.state.params
     return (
       <View style={styles.content}>
         <Text style={styles.answer}>Quiz Stats!</Text>
         <Text style={styles.result}>You correctly answered: {correctCount} of { questionsCount } answers!</Text>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={() => this.props.navigation.navigate('Quiz', {title, questions})}
         >
           <View style={styles.deckButton}>
-            <Text style={[styles.deckButtonText]}>Deck List</Text>
+            <Text style={[styles.deckButtonText]}>Restart quiz</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('ItemDeck', {title, questions})}
+        >
+          <View style={styles.deckButton}>
+            <Text style={[styles.deckButtonText]}>Deck</Text>
           </View>
         </TouchableOpacity>
       </View>

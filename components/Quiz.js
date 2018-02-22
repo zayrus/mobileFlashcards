@@ -38,7 +38,9 @@ export default class Quiz extends Component {
     if (nextIndex >= questionsCount) {
       this.props.navigation.navigate('QuizStats', {
         questionsCount: questionsCount,
-        correctCount: this.state.correctAnswers + 1
+        correctCount: this.state.correctAnswers + 1,
+        title: deck.title,
+        questions: deck.questions
       })
     } else {
       this.setState({

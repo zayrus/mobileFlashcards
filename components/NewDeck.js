@@ -6,20 +6,20 @@ import { saveDeck } from '../utils/api'
 import { addNewDeck } from '../actions'
 
 class NewDeck extends Component {
-  state = { deckName: '' }
+  state = { title: '' }
 
   submit = () => {
-    const { deckName } = this.state
+    const { title } = this.state
 
-    if (deckName === '') {
+    if (title === '') {
         alert('Please fill Deck title field')
         return
     }
-    this.props.dispatch(addNewDeck(this.state.deckName))
+    this.props.dispatch(addNewDeck(this.state.title))
     this.setState({
-      deckName:''
+      title:''
     })
-    this.props.navigation.goBack()
+    this.props.navigation.navigate('ItemDeck', { title })
   }
 
   render() {
@@ -33,8 +33,8 @@ class NewDeck extends Component {
           <TextInput
           style={[styles.textInputBox]}
           placeholder='Deck title'
-          value={this.state.deckName}
-          onChangeText={(deckName) => this.setState({deckName})}
+          value={this.state.title}
+          onChangeText={(title) => this.setState({title})}
           multiline={false}
           />
         </View>

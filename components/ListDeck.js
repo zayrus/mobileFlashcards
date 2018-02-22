@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
@@ -30,7 +29,7 @@ class ListDeck extends Component {
     return (
       <TouchableOpacity
         style={styles.item}
-        onPress={() =>
+        onPress={() => 
           this.props.navigation.navigate('ItemDeck', item)}>
           <Text style={styles.deck} >{item.title}</Text>
           <Text style={styles.cardQty} >{item.questions.length} Cards</Text>

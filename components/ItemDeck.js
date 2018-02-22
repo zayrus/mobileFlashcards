@@ -13,11 +13,12 @@ import { black, white, grey } from '../utils/colors'
   render() {
     let {title} = this.props.navigation.state.params;
     let questions = this.props.decks[title] && this.props.decks[title].questions;
+    const questLen = questions ? questions.length : 0
 
     return (
       <View style={styles.container}>
         <Text style={styles.bigText}>{title}</Text>
-        <Text style={styles.smallText}>{questions.length} cards</Text>
+        <Text style={styles.smallText}>{questLen} cards</Text>
         <TouchableOpacity style={styles.addButton}
             onPress={() => {
               this.props.navigation.navigate('AddCard', {
