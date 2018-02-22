@@ -43,31 +43,37 @@ class AddCard extends React.Component {
         style={styles.container}
         behavior="padding"
       >
-        <TextInput
-          style={styles.textInputBox}
-          value={question}
-          placeholder='Write a question'
-          multiline={true}
-          editable={true}
-          numberOfLines={4}
-          placeholder="Your Question"
-          onChangeText={question => this.setState({question})}
-        />
-        <TextInput
-          style={styles.textInputBox}
-          value={answer}
-          placeholder='Write answer'
-          multiline={true}
-          editable={true}
-          numberOfLines={6}
-          placeholder="Your Answer"
-          onChangeText={answer => this.setState({answer})}
-        />
+      <View>
+        <View>
+          <TextInput
+            style={styles.textInputBox}
+            value={question}
+            placeholder='Write a question'
+            multiline={true}
+            editable={true}
+            numberOfLines={4}
+            placeholder="Your Question"
+            onChangeText={question => this.setState({question})}
+          />
+        </View>
+        <View>
+          <TextInput
+            style={styles.textInputBox}
+            value={answer}
+            placeholder='Write answer'
+            multiline={true}
+            editable={true}
+            numberOfLines={6}
+            placeholder="Your Answer"
+            onChangeText={answer => this.setState({answer})}
+          />
+        </View>
         <TouchableOpacity onPress={this.submit}>
           <View style={styles.submitButton}>
             <Text style={[styles.buttonText]}>Submit</Text>
           </View>
         </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     )
   }
@@ -82,16 +88,16 @@ const styles = StyleSheet.create({
   },
 
   textInputBox: {
-    padding: 20,
-    margin: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 5,
+    marginBottom: 20,
     borderColor: black,
     borderRadius: 5,
     borderWidth: 1.0,
+    textAlignVertical: 'center',
+    backgroundColor: white
 
-  },
-
-  inputContainer: {
-    backgroundColor: grey
   },
 
   submitButton: {

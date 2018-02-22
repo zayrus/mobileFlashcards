@@ -74,11 +74,11 @@ export default class Quiz extends Component {
             <Text style={styles.toggleText}>{this.state.mode === 'question' ? 'Answer' : 'Question'}</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={this.onCorrect}>
+          <TouchableOpacity style={styles.correctButton} onPress={this.onCorrect}>
             <Text style={styles.correct}>Correct</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={this.onIncorrect}>
+          <TouchableOpacity style={styles.incorrectButton} onPress={this.onIncorrect}>
             <Text style={styles.incorrect}>Incorrect</Text>
           </TouchableOpacity>
         </View>
@@ -107,13 +107,30 @@ const styles = StyleSheet.create({
     textAlignVertical:'center'
   },
 
+  correctButton: {
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    borderColor: '#222',
+    borderWidth: 0.5,
+    backgroundColor: green,
+  },
+
+  incorrectButton: {
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    borderColor: '#222',
+    borderWidth: 0.5,
+    backgroundColor: red,
+  },
   correct:{
-    color:'darkorange',
+    color:'white',
     fontSize:20,
   },
 
   incorrect:{
-    color:'#A40000',
+    color:'white',
     fontSize:20,
   },
 

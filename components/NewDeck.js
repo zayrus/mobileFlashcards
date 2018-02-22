@@ -9,6 +9,12 @@ class NewDeck extends Component {
   state = { deckName: '' }
 
   submit = () => {
+    const { deckName } = this.state
+
+    if (deckName === '') {
+        alert('Please fill Deck title field')
+        return
+    }
     this.props.dispatch(addNewDeck(this.state.deckName))
     this.setState({
       deckName:''
@@ -23,13 +29,15 @@ class NewDeck extends Component {
         behavior="padding"
       >
         <Text style={styles.header}>What is the title of your new deck?</Text>
-        <TextInput
+        <View style={styles.inputContainer}>
+          <TextInput
           style={[styles.textInputBox]}
           placeholder='Deck title'
           value={this.state.deckName}
           onChangeText={(deckName) => this.setState({deckName})}
           multiline={false}
-        />
+          />
+        </View>
         <TouchableOpacity onPress={this.submit}>
           <View style={styles.submitButton}>
             <Text style={[styles.buttonText]}>Submit</Text>
@@ -42,6 +50,7 @@ class NewDeck extends Component {
 
 const styles = StyleSheet.create({
   container:{
+    padding: 40,
     justifyContent:'space-around',
     alignContent:'center',
     flex:1
@@ -49,10 +58,13 @@ const styles = StyleSheet.create({
 
   textInputBox:{
     padding: 20,
-    margin: 10,
     borderColor: black,
     borderRadius: 5,
     borderWidth: 1.0,
+  },
+
+  inputContainer: {
+    backgroundColor: white
   },
 
   header:{
